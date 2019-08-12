@@ -63,7 +63,7 @@ const ConnectAccount = () => {
           <p>Copied!</p>
         </div>
       )}
-      {currentWallet.state !== 'Deployed' ? (
+      {currentWallet.state === 'Not Connected' ? (
         <button
           onClick={() => {
             toggle('getQrCode');
@@ -108,7 +108,7 @@ const ConnectAccount = () => {
             navigate there on the device/browser that is connected.
           </p>
           {qrCode && (
-            <>
+            <div className="QR">
               <QRCode value={qrCode} />
               <CopyToClipboard onCopy={onCopy} text={qrCode}>
                 <button className="Address">
@@ -125,7 +125,7 @@ const ConnectAccount = () => {
                   </svg>
                 </button>
               </CopyToClipboard>
-            </>
+            </div>
           )}
         </div>
       </Modal>
