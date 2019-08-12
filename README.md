@@ -1,5 +1,6 @@
 
-# Fork of pocket-moloch for mc-dao
+# Pocket Moloch aka Pokémol
+Bare bones, mobile-first set up for Moloch frontend with Abridged Wallet SDK by Odyssy
 
 
 ## Development
