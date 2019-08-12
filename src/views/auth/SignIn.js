@@ -49,7 +49,7 @@ const SignIn = ({ history }) => {
             );
             // account address is set to 0x0 on signup
             // update this value after sdk is initialized and created
-            // if account address exisit on aws aut connect account to sdk
+            // if account address exists on aws but connect account to sdk
             if (user.attributes['custom:account_address'] !== '0x0') {
               try {
                 await sdk.initialize();
