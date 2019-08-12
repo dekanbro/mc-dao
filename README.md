@@ -1,5 +1,6 @@
 
-# Fork of pocket-moloch for mc-dao
+# McDao
+Pocket Moloch fork, mobile-first set up for Moloch frontend with Abridged Wallet SDK by Odyssy
 
 
 ## Development
