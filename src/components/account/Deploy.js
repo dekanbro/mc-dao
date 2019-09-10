@@ -12,48 +12,46 @@ const Deploy = () => {
 
   return (
     <>
-      {currentWallet.state !== 'Deployed' && (
-        <button
-          onClick={() => {
-            const sdk = currentUser.sdk;
-            const bcprocessor = new BcProcessorService();
+      {currentWallet.state !== 'Deployed' &&
+        currentWallet.state !== 'Not Connected' &&
+        currentWallet.nextState !== 'Deployed' && (
+          <button
+            onClick={() => {
+              const sdk = currentUser.sdk;
+              const bcprocessor = new BcProcessorService();
 
-            sdk
-              .estimateAccountDeployment()
-              .then((estimated) => {
-                // console.log(estimated);
-                if (ethToWei(currentWallet.eth).lt(estimated.totalCost)) {
-                  alert(
-                    `you need more gas, at least: ${web3Service.fromWei(
-                      estimated.totalCost.toString(),
-                    )}`,
-                  );
-
-                  return false;
-                }
-                sdk
-                  .deployAccount()
-                  .then((data) => {
-                    console.log('deployed', data);
-                    bcprocessor.setTx(
-                      data,
-                      currentUser.attributes['custom:account_address'],
-                      'Deploy contract wallet.',
-                      true,
+              sdk
+                .estimateAccountDeployment()
+                .then((estimated) => {
+                  // console.log(estimated);
+                  if (ethToWei(currentWallet.eth).lt(estimated.totalCost)) {
+                    alert(
+                      `you need more gas, at least: ${web3Service.fromWei(
+                        estimated.totalCost.toString(),
+                      )}`,
                     );
-                    setCurrentWallet({
-                      ...currentWallet,
-                      ...{ state: 'Deployed' },
-                    });
-                  })
-                  .catch((err) => console.log(err));
-              })
-              .catch((err) => console.log(err));
-          }}
-        >
-          Deploy
-        </button>
-      )}
+
+                    return false;
+                  }
+                  sdk
+                    .deployAccount(estimated)
+                    .then((data) => {
+                      console.log('deployed', data);
+                      bcprocessor.setTx(
+                        data,
+                        currentUser.attributes['custom:account_address'],
+                        'Deploy contract wallet.',
+                        true,
+                      );
+                    })
+                    .catch((err) => console.log(err));
+                })
+                .catch((err) => console.log(err));
+            }}
+          >
+            Deploy
+          </button>
+        )}
     </>
   );
 };
