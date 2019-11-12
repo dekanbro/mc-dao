@@ -6,11 +6,12 @@ import Routes from './Routes';
 import Header from './components/header/Header';
 import Loading from './components/shared/Loading';
 import McDaoService from './utils/McDaoService';
-import WethService from './utils/WethService';
+// import WethService from './utils/WethService';
 import Web3Service from './utils/Web3Service';
+import TokenService from './utils/TokenService';
 
 const mcDao = new McDaoService();
-const weth = new WethService();
+// const weth = new WethService();
 const web3 = new Web3Service();
 
 const App = ({ client }) => {
@@ -27,16 +28,22 @@ const App = ({ client }) => {
       const periodDuration = await mcDao.getPeriodDuration();
       const processingReward = await mcDao.getProcessingReward();
       const proposalDeposit = await mcDao.getProposalDeposit();
-      const guildBankValue = await weth.balanceOf(guildBankAddr);
+      const approvedToken = await mcDao.approvedToken();
+
+      const tokenService = new TokenService(approvedToken);
+      const guildBankValue = await tokenService.balanceOf(guildBankAddr);
+      const tokenSymbol = await tokenService.getSymbol();
 
       client.writeData({
         data: {
-          currentPeriod: currentPeriod.toNumber(),
-          totalShares: totalShares.toNumber(),
+          currentPeriod: parseInt(currentPeriod),
+          totalShares: parseInt(totalShares),
           guildBankAddr,
-          gracePeriodLength: gracePeriodLength.toNumber(),
-          votingPeriodLength: votingPeriodLength.toNumber(),
-          periodDuration: periodDuration.toNumber(),
+          approvedToken,
+          tokenSymbol,
+          gracePeriodLength: parseInt(gracePeriodLength),
+          votingPeriodLength: parseInt(votingPeriodLength),
+          periodDuration: parseInt(periodDuration),
           processingReward: web3.fromWei(processingReward),
           proposalDeposit: web3.fromWei(proposalDeposit),
           guildBankValue: web3.fromWei(guildBankValue),

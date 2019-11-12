@@ -20,8 +20,8 @@ const StackedVote = ({id, baseColor, noColor, yesColor, currentYesVote, currentN
     const currentProposal = async () => {
       const daoService = new McDaoService();
       const info = await daoService.proposalQueue(id);
-      const noVoteShares = info.noVotes.toNumber() + currentNoVote;
-      const yesVoteShares = info.yesVotes.toNumber() + currentYesVote;
+      const noVoteShares = parseInt(info.noVotes) + currentNoVote;
+      const yesVoteShares = parseInt(info.yesVotes) + currentYesVote;
       const totalVoteShares = noVoteShares + yesVoteShares;
       const percentageSharesYes = (yesVoteShares / totalVoteShares) * 100 || 0;
       const percentageSharesNo = (noVoteShares / totalVoteShares) * 100 || 0;
@@ -48,11 +48,11 @@ const StackedVote = ({id, baseColor, noColor, yesColor, currentYesVote, currentN
   return (
     <div className="FullBar">
       <div className="Labels">
-        <span className="NoLabel">
-          {noVoteShares}
-        </span>
         <span className="YesLabel">
           {yesVoteShares}
+        </span>
+        <span className="NoLabel">
+          {noVoteShares}
         </span>
       </div>
       <div className="BaseBar" />
