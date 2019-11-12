@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 
 # McDao
 Pocket Moloch fork, mobile-first set up for Moloch frontend with Abridged Wallet SDK by Odyssy
-=======
-# Pocket Moloch aka Pokémol
->>>>>>> c6b35de2f7000d856c2dec44cf2dbc186bb7b3e0
 
 Bare bones, mobile-first set up for Moloch frontend with Abridged Wallet SDK by Odyssy
 

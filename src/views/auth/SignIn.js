@@ -72,11 +72,7 @@ const SignIn = (props) => {
 
             // account address is set to 0x0 on signup
             // update this value after sdk is initialized and created
-<<<<<<< HEAD
-            // if account address exists on aws but connect account to sdk
-=======
             // if account address exists on aws auth connect account to sdk
->>>>>>> c6b35de2f7000d856c2dec44cf2dbc186bb7b3e0
             if (user.attributes['custom:account_address'] !== '0x0') {
               // if pk is in local storage then user has already connected but was timed out
               if (
