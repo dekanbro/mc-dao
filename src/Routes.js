@@ -13,8 +13,11 @@ import SignUp from './views/auth/SignUp';
 import SignIn from './views/auth/SignIn';
 import Confirm from './views/auth/Confirm';
 import SignOut from './views/auth/SignOut';
-import AddDevice from './views/addDevice/AddDevice';
-import Advanced from './views/account/Advanced';
+import ForgotPassword from './views/auth/ForgotPassword';
+import ForgotPasswordConfirm from './views/auth/ForgotPasswordConfirm';
+import AccountRecovery from './views/account/AccountRecovery';
+import ResendCode from './views/auth/ResendCode';
+import ConnectAccount from './components/account/ConnectAccount';
 
 const Routes = () => (
   <Switch>
@@ -26,13 +29,20 @@ const Routes = () => (
     <Route path="/members" exact component={Members} />
     <Route path="/member/:id" exact component={Member} />
     <Route path="/account" exact component={Account} />
-    <Route path="/advanced" exact component={Advanced} />
     <Route path="/help" exact component={Help} />
     <Route path="/sign-up" exact component={SignUp} />
     <Route path="/sign-in" exact component={SignIn} />
     <Route path="/sign-out" exact component={SignOut} />
     <Route path="/confirm" exact component={Confirm} />
-    <Route path="/add-device/:deviceAddr" exact component={AddDevice} />
+    <Route path="/forgot-password" exact component={ForgotPassword} />
+    <Route
+      path="/forgot-password-confirm"
+      exact
+      component={ForgotPasswordConfirm}
+    />
+    <Route path="/connect-account" exact component={ConnectAccount} />
+    <Route path="/account-recovery" exact component={AccountRecovery} />
+    <Route path="/resend-code" exact component={ResendCode} />
     <Route path="*" component={FourOhFour} />
   </Switch>
 );
